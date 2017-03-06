@@ -7,8 +7,8 @@
 -->
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceContainer name="head.additional">
-            <block class="Rees46\Personalization\Block\Frontend\Init" name="rees46_init" template="init.phtml"/>
+        <referenceContainer name="content">
+            <block class="Rees46\Personalization\Block\Frontend\Purchase" name="rees46_purchase" template="purchase.phtml"/>
         </referenceContainer>
     </body>
 </page>
