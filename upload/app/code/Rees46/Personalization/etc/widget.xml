@@ -5,11 +5,11 @@
  */
 -->
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
-	<widget id="rees46_recommendation" class="Rees46\Personalization\Block\Frontend\Widget\Recommendation" placeholder_image="Rees46_Personalization::image/widget.png">
+	<widget id="rees46_recommendation" class="Rees46\Personalization\Block\Frontend\Widget\Recommendation" placeholder_image="Rees46_Personalization::images/rees46_widget.png">
 		<label translate="true">REES46 Recommendations</label>
 		<description translate="true">REES46 Product Recommendations Block</description>
         <parameters>
-            <parameter name="type" xsi:type="select" required="true" visible="true" source_model="Rees46\Personalization\Model\Config\Source\Api\Type">
+            <parameter name="block_type" xsi:type="select" required="true" visible="true" source_model="Rees46\Personalization\Model\Config\Source\Api\Type">
                 <label translate="true">Block Type</label>
             </parameter>
             <parameter name="title" xsi:type="text" required="false" visible="true">
@@ -30,10 +30,10 @@
             <parameter name="template" xsi:type="select" required="true" visible="true">
                 <label translate="true">Recommendation Block Template</label>
                 <options>
-                    <option name="basic" value="Rees46_Personalization::widget/recommendation/default.phtml" selected="true">
+                    <option name="default" value="Rees46_Personalization::widget/default.phtml" selected="true">
                         <label translate="true">Default Template</label>
                     </option>
-                    <option name="basic" value="Rees46_Personalization::widget/recommendation/basic.phtml">
+                    <option name="basic" value="Rees46_Personalization::widget/basic.phtml">
                         <label translate="true">REES46 Basic Template</label>
                     </option>
                     <option name="grid" value="Magento_CatalogWidget::product/widget/content/grid.phtml">

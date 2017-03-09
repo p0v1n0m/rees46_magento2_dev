@@ -17,6 +17,7 @@ class Ajax extends \Magento\Backend\App\Action
     {
         $this->_api = $api;
         $this->_json = $json;
+
         parent::__construct($context);
     }
 
