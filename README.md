@@ -6,18 +6,18 @@
 
 ## 1. Установка модуля
 
-# Ручная установка
+### Ручная установка
 * Перейдите на страницу модуля в Magento Marketplace: https://marketplace.magento.com/_XXX_
 * Нажмите кнопку "Add to Cart" и затем оформите заказ.
 * Перейдите по пути My Account > My Purchases.
 * Скачайте архив с модулем и разархивируйте его.
 * Скопируйте содержимое папки upload в корень сайта.
 * Используя командную строку выполните следующие команды:
-php bin/magento module:enable Rees46_Personalization
-php bin/magento setup:upgrade
-php bin/magento setup:static-content:deploy
+`php bin/magento module:enable Rees46_Personalization`
+`php bin/magento setup:upgrade`
+`php bin/magento setup:static-content:deploy`
 
-# Установка с помошью Component Manager
+### Установка с помошью Component Manager
 * Перейдите на страницу модуля в Magento Marketplace: https://marketplace.magento.com/_XXX_
 * Нажмите кнопку "Add to Cart" и затем оформите заказ.
 * Перейдите по пути My Account > My Access Keys > Magento 2 и скопируйте Public Key и Private Key (предварительно сгенерируйте их, если это еще не сделано).
