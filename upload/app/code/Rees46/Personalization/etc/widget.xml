@@ -27,7 +27,7 @@
                 <label translate="true">Image Height</label>
                 <value>100</value>
             </parameter>
-            <parameter name="template" xsi:type="select" required="true" visible="true">
+            <parameter name="block_template" xsi:type="select" required="true" visible="true">
                 <label translate="true">Recommendation Block Template</label>
                 <options>
                     <option name="default" value="Rees46_Personalization::widget/default.phtml" selected="true">

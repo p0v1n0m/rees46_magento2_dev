@@ -9,14 +9,15 @@ class Type implements \Magento\Framework\Option\ArrayInterface
     public function toOptionArray()
     {
         return [
-            ['value' => 'interesting', 'label' => __('You may like it')],
-            ['value' => 'also_bought', 'label' => __('Also bought with this product')],
-            ['value' => 'similar', 'label' => __('Similar products')],
-            ['value' => 'popular', 'label' => __('Popular products')],
-            ['value' => 'see_also', 'label' => __('See also')],
-            ['value' => 'recently_viewed', 'label' => __('Recently viewed')],
-            ['value' => 'buying_now', 'label' => __('Right now bought')],
-            ['value' => 'search', 'label' => __('Customers who looked for this product also bought')],
+            ['value' => 'interesting', 'label' => __('You May Also Like')],
+            ['value' => 'also_bought', 'label' => __('Frequently Bought Together')],
+            ['value' => 'similar', 'label' => __('Similar Products')],
+            ['value' => 'popular', 'label' => __('Popular Products')],
+            ['value' => 'see_also', 'label' => __('Recommended For You')],
+            ['value' => 'recently_viewed', 'label' => __('You Recently Viewed')],
+            ['value' => 'buying_now', 'label' => __('Trending Products')],
+            ['value' => 'search', 'label' => __('Customers Who Looked For This Item Also Bought')],
+            ['value' => 'supply', 'label' => __('Regular Purchase')],
         ];
     }
 }

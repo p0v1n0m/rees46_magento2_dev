@@ -8,144 +8,150 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
     protected $_registry;
     protected $_cart;
     protected $_query;
+    protected $_config;
+    protected $_brand;
 
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,       
         \Magento\Framework\Registry $registry,
         \Magento\Checkout\Model\Cart $cart,
         \Magento\Search\Model\QueryFactory $query,
+        \Rees46\Personalization\Helper\Config $config,
+        \Rees46\Personalization\Model\Config\Source\Product\Manufacturer $brand,
         array $data = []
     )
     {
         $this->_registry = $registry;
         $this->_cart = $cart;
         $this->_query = $query;
+        $this->_config = $config;
+        $this->_brand = $brand;
         parent::__construct($context, $data);
     }
 
 	public function _toHtml()
 	{
-	    $params = array();
+		if ($this->_config->isRees46Enabled()) {
+		    $params = array();
 
-	    $settings = array(
-	    	'type' => $this->getData('block_type'),
-	    	'title' => $this->getData('title'),
-	    	'limit' => $this->getData('limit'),
-	    	'width' => $this->getData('width'),
-	    	'height' => $this->getData('height'),
-	    	'template' => $this->getData('template'),
-	    	'discount' => $this->getData('discount'),
-	    	'brands' => $this->getData('brands'),
-	    	'exclude_brands' => $this->getData('exclude_brands'),
-	    	'css' => '',
-	    );
+		    $settings = array(
+		    	'type' => $this->getData('block_type'),
+		    	'title' => $this->getData('title'),
+		    	'limit' => $this->getData('limit'),
+		    	'width' => $this->getData('width'),
+		    	'height' => $this->getData('height'),
+		    	'template' => $this->getData('block_template'),
+		    	'discount' => $this->getData('discount'),
+		    	'brands' => $this->getData('brands'),
+		    	'exclude_brands' => $this->getData('exclude_brands'),
+		    	'css' => '',
+		    );
 
-		if ($settings['template'] == 'Rees46_Personalization::widget/basic.phtml') {
-			$settings['css'] = 'r46(\'add_css\', \'recommendations\');';
-		}
-
-		if ($this->getRequest()->getControllerName() == 'product' && $this->_registry->registry('current_product')->getId()) {
-			$item = (int)$this->_registry->registry('current_product')->getId();
-		}
-
-		if ($this->getRequest()->getControllerName() == 'category' && $this->_registry->registry('current_category')->getId()) {
-			$category = (int)$this->_registry->registry('current_category')->getId();
-
-			//$categories = explode('_', (string)$this->request->get['path']);
-		}
-
-		if ($this->_cart->getQuote()) {
-			foreach ($this->_cart->getQuote()->getAllVisibleItems() as $product) {
-				$params['cart'][] = $product->getProductId();
-			}
-		}
-
-		if ($this->getRequest()->getRouteName() == 'catalogsearch' && $this->_query->get()->getQueryText() != '') {
-			$search_query = $this->_query->get()->getQueryText();
-		}
-
-		if ($settings['limit'] > 0) {
-			$params['limit'] = (int)$settings['limit'];
-		} else {
-			$params['limit'] = 5;
-		}
-
-		$params['discount'] = (int)$settings['discount'];
-
-		/*if (!empty($settings['brands'])) {
-			$params['brands'] = array();
-
-			foreach ($settings['brands'] as $manufacturer) {
-				$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($manufacturer);
-
-				$params['brands'][] = $manufacturer_info['name'];
-			}
-		}
-
-		if (!empty($settings['exclude_brands'])) {
-			$params['exclude_brands'] = array();
-
-			foreach ($settings['manufacturers_exclude'] as $manufacturer) {
-				$manufacturer_info = $this->model_catalog_manufacturer->getManufacturer($manufacturer);
-
-				$params['exclude_brands'][] = $manufacturer_info['name'];
-			}
-		}*/
-
-		if ($settings['type'] == 'interesting') {
-			if (isset($item)) {
-				$params['item'] = $item;
+			if ($settings['template'] == 'Rees46_Personalization::widget/basic.phtml') {
+				$settings['css'] = 'r46(\'add_css\', \'recommendations\');' . "\n";
 			}
 
-			$settings['params'] = json_encode($params, true);
-		} elseif ($settings['type'] == 'also_bought') {
-			if (isset($item)) {
-				$params['item'] = $item;
+			if ($this->getRequest()->getControllerName() == 'product' && $this->_registry->registry('current_product')->getId()) {
+				$item = (int)$this->_registry->registry('current_product')->getId();
+			}
 
-				if (isset($categories)) {
-					$params['categories'] = $categories;
+			if ($this->getRequest()->getControllerName() == 'category' && $this->_registry->registry('current_category')->getId()) {
+				$category = (int)$this->_registry->registry('current_category')->getId();
+			}
+
+			if ($this->_cart->getQuote()) {
+				foreach ($this->_cart->getQuote()->getAllVisibleItems() as $product) {
+					$params['cart'][] = $product->getProductId();
+				}
+			}
+
+			if ($this->getRequest()->getRouteName() == 'catalogsearch' && $this->_query->get()->getQueryText() != '') {
+				$search_query = $this->_query->get()->getQueryText();
+			}
+
+			if ($settings['limit'] > 0) {
+				$params['limit'] = (int)$settings['limit'];
+			} else {
+				$params['limit'] = 5;
+			}
+
+			$params['discount'] = (int)$settings['discount'];
+
+			if ($settings['brands'] || $settings['exclude_brands']) {
+				foreach ($this->_brand->getAllOptions() as $brand) {
+					$brands[$brand['value']] = $brand['label'];
+				}
+			}
+
+			if ($settings['brands']) {
+				foreach (explode(',', (string)$settings['brands']) as $id) {
+					$params['brands'][] = $brands[$id];
+				}
+			}
+
+			if ($settings['exclude_brands']) {
+				foreach (explode(',', (string)$settings['exclude_brands']) as $id) {
+					$params['exclude_brands'][] = $brands[$id];
+				}
+			}
+
+			if ($settings['type'] == 'interesting') {
+				if (isset($item)) {
+					$params['item'] = $item;
 				}
 
 				$settings['params'] = json_encode($params, true);
-			}
-		} elseif ($settings['type'] == 'similar') {
-			if (isset($item) && isset($cart)) {
-				$params['item'] = $item;
-				$params['cart'] = $cart;
+			} elseif ($settings['type'] == 'also_bought') {
+				if (isset($item)) {
+					$params['item'] = $item;
 
-				if (isset($categories)) {
-					$params['categories'] = $categories;
+					$settings['params'] = json_encode($params, true);
+				}
+			} elseif ($settings['type'] == 'similar') {
+				if (isset($item) && isset($cart)) {
+					$params['item'] = $item;
+					$params['cart'] = $cart;
+
+					$settings['params'] = json_encode($params, true);
+				}
+			} elseif ($settings['type'] == 'popular') {
+				if (isset($category)) {
+					$params['category'] = $category;
 				}
 
 				$settings['params'] = json_encode($params, true);
-			}
-		} elseif ($settings['type'] == 'popular') {
-			if (isset($category)) {
-				$params['category'] = $category;
-			}
+			} elseif ($settings['type'] == 'see_also') {
+				if (isset($cart)) {
+					$params['cart'] = $cart;
 
-			$settings['params'] = json_encode($params, true);
-		} elseif ($settings['type'] == 'see_also') {
-			if (isset($cart)) {
-				$params['cart'] = $cart;
+					$settings['params'] = json_encode($params, true);
+				}
+			} elseif ($settings['type'] == 'recently_viewed') {
+				$settings['params'] = json_encode($params, true);
+			} elseif ($settings['type'] == 'buying_now') {
+				if (isset($item)) {
+					$params['item'] = $item;
+				}
+
+				if (isset($cart)) {
+					$params['cart'] = $cart;
+				}
 
 				$settings['params'] = json_encode($params, true);
-			}
-		} elseif ($settings['type'] == 'recently_viewed') {
-			$settings['params'] = json_encode($params, true);
-		} elseif ($settings['type'] == 'buying_now') {
-			if (isset($item)) {
-				$params['item'] = $item;
-			}
+			} elseif ($settings['type'] == 'search') {
+				if (isset($search_query)) {
+					$params['search_query'] = $search_query;
 
-			if (isset($cart)) {
-				$params['cart'] = $cart;
-			}
+					if (isset($cart)) {
+						$params['cart'] = $cart;
+					}
 
-			$settings['params'] = json_encode($params, true);
-		} elseif ($settings['type'] == 'search') {
-			if (isset($search_query)) {
-				$params['search_query'] = $search_query;
+					$settings['params'] = json_encode($params, true);
+				}
+			} elseif ($settings['type'] == 'supply') {
+				if (isset($item)) {
+					$params['item'] = $item;
+				}
 
 				if (isset($cart)) {
 					$params['cart'] = $cart;
@@ -153,24 +159,13 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
 
 				$settings['params'] = json_encode($params, true);
 			}
-		} elseif ($settings['type'] == 'supply') {
-			if (isset($item)) {
-				$params['item'] = $item;
-			}
 
-			if (isset($cart)) {
-				$params['cart'] = $cart;
-			}
+			$settings['module_id'] = md5(http_build_query($settings));
 
-			$settings['params'] = json_encode($params, true);
+		    $this->setData('settings', $settings);
+		    $this->setTemplate('widget/rees46.phtml');
+
+		    return parent::_toHtml();
 		}
-
-		$settings['module_id'] = md5(http_build_query($settings));
-
-	    $this->setData('settings', $settings);
-
-	    $this->setTemplate('widget/rees46.phtml');
-var_dump($settings);
-	    return parent::_toHtml();
 	}
 }

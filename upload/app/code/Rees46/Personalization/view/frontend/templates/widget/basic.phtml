@@ -10,16 +10,16 @@
 			<?php foreach ($block->getProductCollection()->getItems() as $_item): ?>
 			<div class="recommended-item">
 				<div class="recommended-item-photo">
-					<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"><?php echo $block->getImage($_item, 'new_products_content_widget_grid')->toHtml(); ?></a>
+					<a href="<?php echo $block->getProductUrl($_item) ?>"><?php echo $block->getImage($_item, 'new_products_content_widget_grid')->toHtml(); ?></a>
 				</div>
 				<div class="recommended-item-title">
-					<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"><?php echo $block->escapeHtml($_item->getName()) ?></a>
+					<a href="<?php echo $block->getProductUrl($_item) ?>"><?php echo $block->escapeHtml($_item->getName()) ?></a>
 				</div>
 				<div class="recommended-item-price">
 					<?php echo $block->getProductPriceHtml($_item, 'widget-product-grid'); ?>
 				</div>
 				<div class="recommended-item-action">
-					<a href="<?php /* @escapeNotVerified */ echo $block->getProductUrl($_item) ?>"><?php echo $text_more = 'More'; ?></a>
+					<a href="<?php echo $block->getProductUrl($_item) ?>"><?php echo __('More'); ?></a>
 				</div>
 			</div>
 			<?php endforeach ?>
