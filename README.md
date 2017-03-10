@@ -15,7 +15,9 @@
 * Используя командную строку выполните следующие команды:
 
 ```php bin/magento module:enable Rees46_Personalization```
+
 ```php bin/magento setup:upgrade```
+
 ```php bin/magento setup:static-content:deploy```
 
 ### Установка с помошью Component Manager
