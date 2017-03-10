@@ -61,7 +61,7 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
 
 			if ($this->_cart->getQuote()) {
 				foreach ($this->_cart->getQuote()->getAllVisibleItems() as $product) {
-					$params['cart'][] = $product->getProductId();
+					$cart[] = $product->getProductId();
 				}
 			}
 
@@ -100,10 +100,18 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
 					$params['item'] = $item;
 				}
 
+				if (isset($cart)) {
+					$params['cart'] = $cart;
+				}
+
 				$settings['params'] = json_encode($params, true);
 			} elseif ($settings['type'] == 'also_bought') {
 				if (isset($item)) {
 					$params['item'] = $item;
+
+					if (isset($cart)) {
+						$params['cart'] = $cart;
+					}
 
 					$settings['params'] = json_encode($params, true);
 				}
@@ -117,6 +125,10 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
 			} elseif ($settings['type'] == 'popular') {
 				if (isset($category)) {
 					$params['category'] = $category;
+				}
+
+				if (isset($cart)) {
+					$params['cart'] = $cart;
 				}
 
 				$settings['params'] = json_encode($params, true);
