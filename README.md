@@ -36,11 +36,68 @@
 
 ## 2. Настройка модуля
 
-* Перейдите в административный раздел вашего сайта.
-* Перейдите по пути Store > Settings > Configuration > REES46 > Settings.
-* 
+### Автоматическая настройка
 
-## 9. Таблица установки блоков рекомендаций
+![Configure](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/001.jpg)
+
+#### Авторизация магазина
+
+* Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
+* Нажмите на кнопку "Авторизация".
+* Заполните открывшуюся форму и нажмите "Отправить".
+
+![Authorize](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/002.jpg)
+
+В процессе авторизации автоматически производятся следующие операции:
+* авторизация вашего магазина в rees46.com
+* экспорт YML-ссылки
+* экспорт заказов
+* экспорт списка покупателей
+* загрузка файлов manifest.json и push_sw.js (эти файлы используются для Web Push оповещений)
+
+#### Регистрация магазина
+
+* Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
+* Нажмите на кнопку "Регистрация".
+* Заполните открывшуюся форму и нажмите "Отправить".
+
+![Register](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/003.jpg)
+
+В процессе регистрации автоматически производятся следующие операции:
+* регистрация пользователя в rees46.com
+* регистрация вашего магазина в rees46.com
+* авторизация вашего магазина в rees46.com
+* экспорт YML-ссылки
+* экспорт заказов
+* экспорт списка покупателей
+* загрузка файлов manifest.json и push_sw.js (эти файлы используются для Web Push оповещений)
+
+![Actions](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/004.jpg)
+
+### Ручная настройка (производится после автоматической настройки)
+
+* Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
+* В форме настроек заполните все поля и нажмите на "Сохранить".
+
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/005.jpg)
+
+## 3. Товарные рекомендации
+
+* Перейдите в административном разделе вашего сайта по пути Content > Elements > Widgets.
+* Нажмите "Add Widget".
+* В выпадающих списках выберите виджет "REES46 Recommendations" и шаблон вашего сайта.
+* Нажмите "Continue".
+* На вкладке "Storefront Properties" заполните настройки расположения виджета. Привязка к необходимым страницам происходит в блоке настроек "Layout Updates".
+* На вкладке "Widget Options" заполните настройки содержимого виджета.
+* Нажмите на кнопку "Save".
+
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/006.jpg)
+
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/007.jpg)
+
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/008.jpg)
+
+## 4. Размещение блоков рекомендаций
 
 Страница | Расположение | Блок рекомендаций
 ------------ | ------------- | -------------
@@ -58,4 +115,4 @@
 Корзина | Внизу страницы | "Вам это будет интересно"
 Поиск | Внизу страницы | "Искавшие это также покупают"
 
-![magento](http://api.rees46.com/marker/prestashop)
+![magento](http://api.rees46.com/marker/magento)

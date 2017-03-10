@@ -49,10 +49,14 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function isRees46Enabled()
     {
-        if ($this->getValue('rees46/actions/action_auth') != ''
-            && $this->getValue('rees46/general/store_key') != ''
-            && $this->getValue('rees46/general/secret_key') != ''
-        ) {
+        if ($this->getValue('rees46/actions/action_auth') && $this->getValue('rees46/general/store_key') && $this->getValue('rees46/general/secret_key')) {
+            return true;
+        }
+    }
+
+    public function isLeadTracking()
+    {
+        if ($this->getValue('rees46/actions/action_lead')) {
             return true;
         }
     }

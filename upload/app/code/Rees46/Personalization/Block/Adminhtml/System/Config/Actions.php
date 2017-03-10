@@ -15,6 +15,7 @@ class Actions extends \Magento\Config\Block\System\Config\Form\Field
     )
     {
         $this->_config = $config;
+
         parent::__construct($context, $data);
     }
 

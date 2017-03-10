@@ -39,7 +39,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function rees46LeadTracking()
     {
-        if (!$this->_config->isRees46Enabled()) {
+        if (!$this->_config->isLeadTracking()) {
             $url = 'https://rees46.com/trackcms/magento?';
 
             $params = array(
@@ -62,6 +62,8 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
             curl_exec($ch);
             curl_close($ch);
+
+            $this->_config->setValue('rees46/actions/action_lead', true);
         }
     }
 

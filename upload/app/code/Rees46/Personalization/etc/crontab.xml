@@ -7,7 +7,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
     <group id="default">
         <job name="rees46_xml" instance="Rees46\Personalization\Controller\Feed\Xml" method="execute">
-            <schedule>00 3 * * *</schedule>
+            <schedule>0 3 * * *</schedule>
         </job>
     </group>
 </config>

@@ -15,6 +15,7 @@ class Help extends \Magento\Config\Block\System\Config\Form\Field
     )
     {
         $this->_config = $config;
+
         parent::__construct($context, $data);
     }
 
@@ -23,14 +24,11 @@ class Help extends \Magento\Config\Block\System\Config\Form\Field
         parent::_prepareLayout();
 
         if (!$this->getTemplate()) {
-	        if ($this->_config->getValue('rees46/actions/action_auth') == ''
-	            && $this->_config->getValue('rees46/general/store_key') == ''
-	            && $this->_config->getValue('rees46/general/secret_key') == ''
-	        ) {
-	            $this->setTemplate('system/config/help.phtml');
-	        } else {
-	        	$this->setTemplate('system/config/help_auth.phtml');
-	        }
+            if (!$this->_config->isRees46Enabled()) {
+                $this->setTemplate('system/config/help.phtml');
+            } else {
+            	$this->setTemplate('system/config/help_auth.phtml');
+            }
         }
 
         return $this;
