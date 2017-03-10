@@ -20,7 +20,7 @@
 
 ```php bin/magento setup:static-content:deploy```
 
-### Установка с помошью Component Manager
+### Установка с помощью Component Manager
 * Перейдите на страницу модуля в Magento Marketplace: https://marketplace.magento.com/_XXX_
 * Нажмите кнопку "Add to Cart" и затем оформите заказ.
 * Перейдите по пути My Account > My Access Keys > Magento 2 и скопируйте Public Key и Private Key (предварительно сгенерируйте их, если это еще не сделано).
@@ -38,15 +38,15 @@
 
 ### Автоматическая настройка
 
-![Configure](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/001.jpg)
+![Configure](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/001.jpg)
 
 #### Авторизация магазина
 
 * Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
-* Нажмите на кнопку "Авторизация".
-* Заполните открывшуюся форму и нажмите "Отправить".
+* Нажмите на кнопку "Authorize".
+* Заполните открывшуюся форму и нажмите "Send".
 
-![Authorize](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/002.jpg)
+![Authorize](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/002.jpg)
 
 В процессе авторизации автоматически производятся следующие операции:
 * авторизация вашего магазина в rees46.com
@@ -58,10 +58,10 @@
 #### Регистрация магазина
 
 * Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
-* Нажмите на кнопку "Регистрация".
-* Заполните открывшуюся форму и нажмите "Отправить".
+* Нажмите на кнопку "Register".
+* Заполните открывшуюся форму и нажмите "Send".
 
-![Register](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/003.jpg)
+![Register](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/003.jpg)
 
 В процессе регистрации автоматически производятся следующие операции:
 * регистрация пользователя в rees46.com
@@ -72,14 +72,14 @@
 * экспорт списка покупателей
 * загрузка файлов manifest.json и push_sw.js (эти файлы используются для Web Push оповещений)
 
-![Actions](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/004.jpg)
+![Actions](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/004.jpg)
 
 ### Ручная настройка (производится после автоматической настройки)
 
 * Перейдите в административном разделе вашего сайта по пути Store > Settings > Configuration > REES46 > Settings.
-* В форме настроек заполните все поля и нажмите на "Сохранить".
+* В форме настроек заполните все поля и нажмите на кнопку "Save".
 
-![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/005.jpg)
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/005.jpg)
 
 ## 3. Товарные рекомендации
 
@@ -91,11 +91,11 @@
 * На вкладке "Widget Options" заполните настройки содержимого виджета.
 * Нажмите на кнопку "Save".
 
-![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/006.jpg)
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/006.jpg)
 
-![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/007.jpg)
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/007.jpg)
 
-![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/008.jpg)
+![Settings](https://github.com/p0v1n0m/rees46_magento2_dev/blob/master/screenshots/en-gb/008.jpg)
 
 ## 4. Размещение блоков рекомендаций
 
