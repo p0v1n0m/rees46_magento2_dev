@@ -169,7 +169,8 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             ->addUrlRewrite()
             ->addFinalPrice()
             ->addAttributeToSort('entity_id', 'ASC')
-            ->setCurPage($start)->setPageSize($limit);
+            ->setCurPage($start)
+            ->setPageSize($limit);
 
         foreach ($collection as $product) {
             $products[] = array(

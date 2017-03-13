@@ -26,6 +26,7 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
         $this->_query = $query;
         $this->_config = $config;
         $this->_brand = $brand;
+
         parent::__construct($context, $data);
     }
 
@@ -38,8 +39,6 @@ class Recommendation extends \Magento\Framework\View\Element\Template implements
 		    	'type' => $this->getData('block_type'),
 		    	'title' => $this->getData('title'),
 		    	'limit' => $this->getData('limit'),
-		    	'width' => $this->getData('width'),
-		    	'height' => $this->getData('height'),
 		    	'template' => $this->getData('block_template'),
 		    	'discount' => $this->getData('discount'),
 		    	'brands' => $this->getData('brands'),

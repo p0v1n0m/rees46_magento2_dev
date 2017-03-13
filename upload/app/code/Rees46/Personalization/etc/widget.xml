@@ -19,14 +19,6 @@
                 <label translate="true">Products Limit</label>
                 <value>5</value>
             </parameter>
-            <parameter name="width" xsi:type="text" required="true" visible="true">
-                <label translate="true">Image Width</label>
-                <value>100</value>
-            </parameter>
-            <parameter name="height" xsi:type="text" required="true" visible="true">
-                <label translate="true">Image Height</label>
-                <value>100</value>
-            </parameter>
             <parameter name="block_template" xsi:type="select" required="true" visible="true">
                 <label translate="true">Recommendation Block Template</label>
                 <options>

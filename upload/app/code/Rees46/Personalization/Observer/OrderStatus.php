@@ -7,18 +7,15 @@ namespace Rees46\Personalization\Observer;
 class OrderStatus implements \Magento\Framework\Event\ObserverInterface
 {
     protected $_config;
-    protected $_curl;
-    protected $_logger;
+    protected $_api;
 
 	public function __construct(
 		\Rees46\Personalization\Helper\Config $config,
-        \Rees46\Personalization\Helper\Curl $curl,
-        \Rees46\Personalization\Helper\Logger $logger
+        \Rees46\Personalization\Helper\Api $api
 	)
 	{
         $this->_config = $config;
-        $this->_curl = $curl;
-        $this->_logger = $logger;
+        $this->_api = $api;
 	}
 
 	public function execute(\Magento\Framework\Event\Observer $observer)
@@ -50,13 +47,7 @@ class OrderStatus implements \Magento\Framework\Event\ObserverInterface
                     'status' => $status,
                 );
 
-                $curl_data['shop_id'] = $this->_config->getValue('rees46/general/store_key');
-                $curl_data['shop_secret'] = $this->_config->getValue('rees46/general/secret_key');
-                $curl_data['orders'] = $order_data;
-
-                $return = $this->_curl->query('POST', 'http://api.rees46.com/import/sync_orders', json_encode($curl_data));
-
-                $this->_logger->log('REES46: autoexport status [' . $order_status_id . '] of order_id [' . $order_id . '] (' . $return['info']['http_code'] . ').');
+                $this->_api->rees46SyncOrders($order_data, $order_status_id);
             }
         }
 	}
