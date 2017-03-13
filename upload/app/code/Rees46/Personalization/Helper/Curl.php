@@ -22,9 +22,7 @@ class Curl extends \Magento\Framework\App\Helper\AbstractHelper
         if (isset($params)) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
         }
-        /////////////////
-        curl_setopt($ch, CURLOPT_USERPWD, 'admin:976431');
-        /////////////////
+
         $data['result'] = curl_exec($ch);
         $data['info'] = curl_getinfo($ch);
 

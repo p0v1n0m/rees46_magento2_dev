@@ -107,8 +107,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
         $curl_data['last_name'] = $params['last_name'];
         $curl_data['country_code'] = $params['country_code'];
 
-        //$return = $this->_curl->query('POST', 'https://rees46.com/api/customers', json_encode($curl_data));
-        $return = $this->_curl->query('POST', 'https://zombolab.com/api/customers', json_encode($curl_data));
+        $return = $this->_curl->query('POST', 'https://rees46.com/api/customers', json_encode($curl_data));
 
         $result = json_decode($return['result'], true);
 
@@ -161,8 +160,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
         $curl_data['yml_file_url'] = $this->_data->getStoreUrl() . 'xml';
         $curl_data['cms_id'] = 10;
 
-        //$return = $this->_curl->query('POST', 'https://rees46.com/api/shops', json_encode($curl_data));
-        $return = $this->_curl->query('POST', 'https://zombolab.com/api/shops', json_encode($curl_data));
+        $return = $this->_curl->query('POST', 'https://rees46.com/api/shops', json_encode($curl_data));
 
         $result = json_decode($return['result'], true);
 
@@ -208,8 +206,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
         $curl_data['yml_file_url'] = $this->_data->getStoreUrl() . 'rees46/feed/xml';
 
-        //$return = $this->_curl->query('PUT', 'https://rees46.com/api/shop/set_yml', json_encode($curl_data));
-        $return = $this->_curl->query('PUT', 'https://zombolab.com/api/shop/set_yml', json_encode($curl_data));
+        $return = $this->_curl->query('PUT', 'https://rees46.com/api/shop/set_yml', json_encode($curl_data));
 
         if ($return['info']['http_code'] < 200 || $return['info']['http_code'] >= 300) {
             $json['error'] = __('Could not export product feed.');
@@ -293,8 +290,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
             $curl_data['orders'] = $export_data;
 
-            //$return = $this->_curl->query('POST', 'http://api.rees46.com/import/orders', json_encode($curl_data));
-            $return = $this->_curl->query('POST', 'http://api.zombolab.com/import/orders', json_encode($curl_data));
+            $return = $this->_curl->query('POST', 'http://api.rees46.com/import/orders', json_encode($curl_data));
  
             if ($return['info']['http_code'] < 200 || $return['info']['http_code'] >= 300) {
                 $json['error'] = __('Could not export orders.');
@@ -312,7 +308,9 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
                 }
             }
         } else {
-            $json['error'] = __('No available orders for export.');
+            $this->_config->setValue('rees46/actions/action_order', true);
+
+            $json['success'] = __('No available orders for export.');
         }
 
         return $json;
@@ -369,8 +367,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
             $curl_data['audience'] = $export_data;
 
-            //$return = $this->_curl->query('POST', 'http://api.rees46.com/import/audience', json_encode($curl_data));
-            $return = $this->_curl->query('POST', 'http://api.zombolab.com/import/audience', json_encode($curl_data));
+            $return = $this->_curl->query('POST', 'http://api.rees46.com/import/audience', json_encode($curl_data));
 
             if ($return['info']['http_code'] < 200 || $return['info']['http_code'] >= 300) {
                 $json['error'] = __('Could not export customers.');
@@ -388,7 +385,9 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
                 }
             }
         } else {
-            $json['error'] = __('No available customers for export.');
+            $this->_config->setValue('rees46/actions/action_customer', true);
+
+            $json['success'] = __('No available customers for export.');
         }
 
         return $json;
@@ -445,8 +444,7 @@ class Api extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function rees46ShopFinish()
     {
-        //$url = 'https://rees46.com/api/customers/login';
-        $url = 'https://zombolab.com/api/customers/login';
+        $url = 'https://rees46.com/api/customers/login';
         $api_key = $this->_config->getValue('rees46/general/api_key');
         $api_secret = $this->_config->getValue('rees46/general/api_secret');
 

@@ -196,7 +196,13 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
 
     public function getProductStock($productId = null, $storeId = null)
     {
-        return $this->_stock->getStockItem($productId, $storeId)->getIsInStock();
+        $stock = $this->_stock->getStockItem($productId, $storeId)->getIsInStock();
+
+        if (!$stock) {
+            $stock = 0;
+        }
+
+        return $stock;
     }
 
     public function getCustomers($data = array())

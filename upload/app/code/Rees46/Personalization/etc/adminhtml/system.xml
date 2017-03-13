@@ -13,7 +13,7 @@
 			<class>separator-top</class>
 			<label>Settings</label>
 			<tab>rees46</tab>
-			<resource>Rees46_Personalization::config</resource>
+			<resource>Rees46_Personalization::settings</resource>
 			<group id="auth" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
                 <frontend_model>Rees46\Personalization\Block\Adminhtml\System\Config\Auth</frontend_model>
 			</group>

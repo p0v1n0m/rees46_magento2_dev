@@ -85,6 +85,7 @@ function rees46UserRegister() {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#rees46_messages').append('<div class="message message-success success"><div data-ui-id="messages-message-success">' + json.success + '</div></div>');
@@ -92,7 +93,9 @@ function rees46UserRegister() {
                 rees46ShopRegister();
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.error + '</div></div>');
             }
         });
@@ -114,6 +117,7 @@ function rees46ShopRegister() {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#rees46_messages').append('<div class="message message-success success"><div data-ui-id="messages-message-success">' + json.success + '</div></div>');
@@ -121,7 +125,9 @@ function rees46ShopRegister() {
                 rees46ShopXML(true);
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.error + '</div></div>');
             }
         });
@@ -145,6 +151,7 @@ function rees46ShopXML(auth = false) {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#submitShopXML').remove();
@@ -156,7 +163,9 @@ function rees46ShopXML(auth = false) {
                 }
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.error + '</div></div>');
             }
         });
@@ -179,6 +188,7 @@ function rees46ShopOrders(next = 1, auth = false) {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#rees46_messages').append('<div class="message message-success success"><div data-ui-id="messages-message-success">' + json.success + '</div></div>');
@@ -196,7 +206,9 @@ function rees46ShopOrders(next = 1, auth = false) {
                 }
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.error + '</div></div>');
             }
         });
@@ -219,6 +231,7 @@ function rees46ShopCustomers(next = 1, auth = false) {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#rees46_messages').append('<div class="message message-success success"><div data-ui-id="messages-message-success">' + json.success + '</div></div>');
@@ -236,7 +249,9 @@ function rees46ShopCustomers(next = 1, auth = false) {
                 }
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.error + '</div></div>');
             }
         });
@@ -258,6 +273,7 @@ function rees46ShopFiles(auth = false) {
             showLoader: true
         }).done(function(json) {
             $('#rees46_messages').empty();
+            $('html, body').animate({ scrollTop: 0 }, 'slow');
 
             if (json.success) {
                 $('#submitShopFile1').remove();
@@ -268,7 +284,9 @@ function rees46ShopFiles(auth = false) {
                 });
             }
 
-            if (json.error) {
+            if (json.message) {
+                $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + json.message + '</div></div>');
+            } else if (json.error) {
                 $.map(json.error, function(error) {
                     $('#rees46_messages').append('<div class="message message-error error"><div data-ui-id="messages-message-error">' + error + '</div></div>');
                 });
